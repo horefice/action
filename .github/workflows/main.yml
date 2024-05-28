@@ -1,0 +1,19 @@
+name: Push date
+on:
+  push:
+  schedule:
+    - cron: '*/15 * */3 * *'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          date > date.txt
+          git config user.name horefice
+          git config user.email h.orefice@gmail.com
+          git add .
+          git commit -m "generated"
+          git push
